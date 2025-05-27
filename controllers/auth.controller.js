@@ -7,6 +7,8 @@ async function register(req,res) {
             message: "All fields are required"
         });
     }
+
+    const role = req.body.role || 'user'; 
     try {
         const existingUser = await User.findOne({where:{email}})
 
@@ -16,7 +18,7 @@ async function register(req,res) {
             });
         }
 
-        const newUser = await User.create({ email, password });
+        const newUser = await User.create({ email, password,role });
         return res.status(201).json({
             message: "User registered successfully",
             user: {

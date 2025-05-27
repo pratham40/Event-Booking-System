@@ -4,6 +4,7 @@ import express from 'express';
 import morgan from 'morgan';
 import {connectToDatabase} from "./config/dbConnection.js"
 import authRoutes from "./routes/auth.route.js";
+import eventRoutes from "./routes/event.route.js"
 import cookieParser from 'cookie-parser';
 const app = express();
 
@@ -13,6 +14,8 @@ app.use(morgan("dev"))
 
 
 app.use("/api/v1/auth",authRoutes)
+
+app.use("/api/v1/event",eventRoutes)
 
 app.get("/",(req,res)=>{
     return res.status(200).json({
